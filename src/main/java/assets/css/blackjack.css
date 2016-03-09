@@ -1,4 +1,9 @@
-
+button{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  top: 20px;
+}
 #game-container{
   position: relative;
   display: block;
@@ -20,13 +25,20 @@
 }
 #text-container{
   position: relative;
-  display: block;
+  display: table;
   margin-left: auto;
   margin-right: auto;
   top: 15%;
   width: 45%;
-  height: 30%;
-  background-color: blue;
+  height: 270px;
+  /*background-color: blue;*/
+  /*After this point, stuff not about position.*/
+  text-align: center;
+  line-height: 70px;
+}
+#text-center{
+  display: table-cell;
+  vertical-align: middle;
 }
 #button-container{
   position: absolute;
@@ -36,6 +48,7 @@
   height: 20%;
   left: 15px;
   background-color: yellow;
+  text-align: center;
 }
 #player-container{
   position: relative;

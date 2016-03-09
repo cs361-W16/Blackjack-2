@@ -12,8 +12,8 @@ public class Game {
 
     public boolean error;
 
-    Person player = new Person();
-    Person dealer = new Person();
+    public Person player = new Person();
+    public Person dealer = new Person();
 
     public java.util.List<Card> deck = new ArrayList<>();
 
@@ -21,6 +21,7 @@ public class Game {
 
     public Game(){
     }
+
 
     public Money Ante(Money playerMoney) {
         playerMoney.balance -= 2;
@@ -48,6 +49,7 @@ public class Game {
 
     // Remove the top card from cardList
     public Card pop(java.util.List<Card> cardList) {
+
         return cardList.remove(cardList.size()-1);
     }
 

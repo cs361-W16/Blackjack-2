@@ -1,9 +1,21 @@
-<#import "../layout/defaultLayout.ftl.html" as layout> 
-<@layout.myLayout "Home page">    
-
-
-<h1>${i18n("hello.world")}</h1>
-<p>${i18n("hello.world.json")}</p>
-<a href="/hello_world.json">Hello World Json</a>
-
-</@layout.myLayout>
+<html>
+    <head>
+        <link href="/assets/css/blackjack.css" rel="stylesheet">
+        <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+    </head>
+    <body>
+      <div id="game-container">
+        <div id="dealer-container">Dealer Container</div>
+        <div id="text-container">
+          <span id="text-center"><h2>Bet: $2</h2><br><h2>Balance: $100</h2></span>
+        </div>
+        <div id="button-container">
+          <button>Hit</button><br>
+          <button>Stay</button><br>
+          <button>Split</button><br>
+          <button>Double Down</button>
+        </div>
+        <div id="player-container">Player Container</div>
+      </div>
+    </body>
+</html>

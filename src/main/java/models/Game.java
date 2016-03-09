@@ -12,23 +12,21 @@ public class Game {
 
     public boolean error;
 
+    int pot = 0;
+
     Person player = new Person();
     Person dealer = new Person();
 
     public java.util.List<Card> deck = new ArrayList<>();
 
-    //public java.util.List<Card>>cols= new ArrayList<>();
+
 
     public Game(){
     }
 
-    public Money Ante(Money playerMoney) {
-        playerMoney.balance -= 2;
-        playerMoney.pot += 2;
-        return playerMoney;
-    }
 
-    public void buildDeck(char answer) {
+    //Deck Functions
+    public void buildDeck() {
 
         // For normal version, we have: 2, 3, 4, 5, 6, 7, 8, 9, J, Q, K, A
         // Total: 52
@@ -41,19 +39,104 @@ public class Game {
         }
     }
 
+    public void clearDeck(){
+        deck.clear();
+
+    }
+
     public void shuffle() {
         long seed = System.nanoTime();
         Collections.shuffle(deck, new Random(seed));
     }
+    //End of Deck Functions
 
+
+    //Player Hand Functions
     // Remove the top card from cardList
     public Card pop(java.util.List<Card> cardList) {
         return cardList.remove(cardList.size()-1);
     }
 
     // Put one card into hand
-    public void hit(java.util.List<Card> cardList) {
-        cardList.add(pop(deck));
+    public void hit(Person person1) {
+        person1.addHand(pop(deck));
     }
 
+    public void Deal(){
+        hit(player);
+        hit(player);
+        hit(dealer);
+        hit(dealer);
+    }
+
+    public void clearHands(){
+        player.clearHand();
+        dealer.clearHand();
+    }
+    //End of Player Hand Functions
+
+    //Turns
+    public void Hold(){
+       dealerAction();
+
+        //SET ALL BUTTONS TO FALSE IF IMPLIMENTING HERE
+    }
+    //Sets player and dealer hands and creates a new deck
+    public void newRound(){
+        clearHands();
+        clearDeck();
+        buildDeck();
+        shuffle();
+        Deal();
+    }
+
+    public int endRound(){
+        if (player.countCards() > 21) {
+            System.out.println("Player Busted");
+            return 0;
+        }else if(player.countCards() > dealer.countCards()){
+            System.out.println("Player Wins");
+            return 1;
+        }else if (player.countCards() == dealer.countCards()){
+            System.out.println("Tie Game");
+            return 2;
+        }else{
+            System.out.println("Dealer Wins");
+            return 3;
+        }
+    }
+
+    public int dealerAction(){
+        while(dealer.countCards() < 17){
+            hit(dealer);
+            if(dealer.countCards() > 21){
+                System.out.println("Dealer Busted");
+                return 1;
+            }
+        }
+        endRound();
+        return 0;
+    }
+    //End of Turns
+
+    //Money things
+    public void beginingBalance(){
+        player.addMoney(100);
+    }
+
+    public void Bet(){
+        player.loseMoney(2);
+        pot +=2;
+    }
+
+    public void winBet(){
+        player.addMoney(pot);
+        pot = 0;
+    }
+
+    public void doubleDown(){
+
+    }
+
+    //End of Money things
 }

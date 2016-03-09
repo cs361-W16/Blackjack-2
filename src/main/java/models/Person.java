@@ -1,5 +1,7 @@
 package models;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -8,6 +10,7 @@ import java.util.Random;
  */
 public class Person {
     public java.util.List<Card> Hand = new ArrayList<>();
+    public int wallet = 0;
 
     public void checkBust(int count){
         if (count > 21) {
@@ -31,12 +34,12 @@ public class Person {
     }
 
     // Count total cards in hand
-    public int countCards(java.util.List<Card> hand) {
+    public int countCards() {
         int count = 0;
         int numAces = 0;
 
-        for(int i = 0; i < hand.size(); ++i){
-            int val = setCardValue(hand.get(i));
+        for(int i = 0; i < Hand.size(); ++i){
+            int val = setCardValue(Hand.get(i));
             if(val == 11)
                 numAces++;
             count += val;
@@ -51,4 +54,23 @@ public class Person {
 
     }
 
+    public void addHand(Card card){
+        Hand.add(card);
+    }
+
+    public void clearHand(){
+            Hand.clear();
+    }
+
+    public int getMoney(){
+        return wallet;
+    }
+
+    public void addMoney(int money){
+        wallet += money;
+    }
+
+    public void loseMoney(int money){
+        wallet -= money;
+    }
 }

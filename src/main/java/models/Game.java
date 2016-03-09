@@ -28,7 +28,7 @@ public class Game {
         return playerMoney;
     }
 
-    public void buildDeck(char answer) {
+    public void buildDeck() {
 
         // For normal version, we have: 2, 3, 4, 5, 6, 7, 8, 9, J, Q, K, A
         // Total: 52
@@ -52,8 +52,9 @@ public class Game {
     }
 
     // Put one card into hand
-    public void hit(java.util.List<Card> cardList) {
-        cardList.add(pop(deck));
+    public void hit(Person person1) {
+        person1.addHand(deck.add(pop(deck)));
+
     }
 
 }

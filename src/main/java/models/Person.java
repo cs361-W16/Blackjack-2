@@ -51,4 +51,15 @@ public class Person {
 
     }
 
+    public void addHand(Card card){
+        Hand.add(card);
+    }
+
+    public void clearHand(){
+        while(Hand.size() > 0){
+
+        }
+
+    }
+
 }

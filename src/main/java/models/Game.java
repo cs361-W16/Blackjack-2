@@ -17,9 +17,22 @@ public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
+    /////////////////////////////////////////////////
+    // This here line is just for testing, remove it when we don't need to test the front end anymore.
+    public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
+    /////////////////////////////////////////////////
+
+
     //public java.util.List<Card>>cols= new ArrayList<>();
 
     public Game(){
+        //////////////////////////////////////////////////
+        // Also for testing. Remove them when the time comes.
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+        ///////////////////////////////////////////////////
+
+
     }
 
     public Money Ante(Money playerMoney) {
@@ -28,6 +41,7 @@ public class Game {
         return playerMoney;
     }
 
+    // NOTE: Why is this parameter here? What is it for?
     public void buildDeck(char answer) {
 
         // For normal version, we have: 2, 3, 4, 5, 6, 7, 8, 9, J, Q, K, A
@@ -55,5 +69,15 @@ public class Game {
     public void hit(java.util.List<Card> cardList) {
         cardList.add(pop(deck));
     }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    NOTE: The following function is for testing only. Somebody comment this out or delete it when we don't need it anymore.
+    public void dealTwo() {
+        for(int i = 0; i < 2; i++){
+            cols.get(i).add(deck.get(deck.size()-1));
+            deck.remove(deck.size()-1);
+        }
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

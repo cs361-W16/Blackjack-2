@@ -43,11 +43,22 @@
       });
       }
 
-      $.getJSON("http://localhost:8080/", function( data ) {
+      $.getJSON("http://localhost:8080/Game", function( data ) {
       display(data);
       game = data;
     });
-
+    $("#dealButton").click(function(){
+    $.ajax({
+      type: "POST",
+      url: "/dealGame",
+      data: JSON.stringify(game),
+      success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+      contentType:"application/json; charset=utf-8",
+      dataType:"json",
+    });
+});
 
     </script>
 

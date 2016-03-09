@@ -16,6 +16,7 @@
 
 package controllers;
 
+import ninja.Context;
 import ninja.Result;
 import ninja.Results;
 
@@ -37,6 +38,10 @@ public class ApplicationController {
         simplePojo.content = "Hello World! Hello Json!";
 
         return Results.json().render(simplePojo);
+
+    }
+
+    public Result initPost(Context context) {
 
     }
     

@@ -5,9 +5,12 @@
     </head>
     <body>
       <div id="game-container">
+        <div id="cover">
+          <button id="play-game-button" onclick="fixPastInitial()">Play<br>Game</button>
+        </div>
         <div id="dealer-container">Dealer Container</div>
         <div id="text-container">
-          <span id="text-center"><h2>Bet: $2</h2><br><h2>Balance: $100</h2></span>
+          <span id="text-center"><h2>Bet: $<span id="current-pot">2</span></h2><br><h2>Balance: $<span id="current-balance">100</span></h2></span>
         </div>
         <div id="button-container">
           <button>Hit</button><br>
@@ -18,4 +21,30 @@
         <div id="player-container">Player Container</div>
       </div>
     </body>
+
+    <script>
+    function fixPastInitial(){
+      $('#cover').addClass('hide');
+    }
+
+    function display(game) {
+      console.log(game);
+      $( '.dropArea' ).html("");
+
+      $.each(game.cols[0], function( key, val ) {
+          $( '#colOne' ).append("<img src='assets/images/English/"+val.suit+val.value+".png' alt=nothing class=cardLocation>");
+      });
+      $.each(game.cols[1], function( key, val ) {
+          $( '#colTwo' ).append("<img src='assets/images/English/"+val.suit+val.value+".png' alt=nothing class=cardLocation>");
+      });
+      }
+
+      $.getJSON("http://localhost:8080/", function( data ) {
+      display(data);
+      game = data;
+    });
+
+
+    </script>
+
 </html>

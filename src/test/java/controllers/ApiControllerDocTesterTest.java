@@ -43,28 +43,4 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
 
 
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-    
-/*@Test
-public void testGetHelloWorldJson() {
-
-    Response response = makeRequest(
-            Request.GET().url(
-                    testServerUrl().path(URL_HELLO_WORLD_JSON)));
-
-    ApplicationController.SimplePojo simplePojo
-            = response.payloadJsonAs(ApplicationController.SimplePojo.class);
-
-    assertThat(simplePojo.content, CoreMatchers.equalTo("Hello World! Hello Json!"));
-
-
-}*/
->>>>>>> edit backend
-=======
-
->>>>>>> 425381f2078d0980297063371c3c9b1759cffbd2
-
 }

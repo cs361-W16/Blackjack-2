@@ -23,11 +23,6 @@ public class Game {
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
     /////////////////////////////////////////////////
 
-
-<<<<<<< HEAD
-    public Game() {
-    }
-=======
     //public java.util.List<Card>>cols= new ArrayList<>();
 
     public Game(){
@@ -36,8 +31,6 @@ public class Game {
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
         ///////////////////////////////////////////////////
->>>>>>> 425381f2078d0980297063371c3c9b1759cffbd2
-
 
     }
     //Deck Functions
@@ -76,22 +69,6 @@ public class Game {
         person1.addHand(pop(deck));
     }
 
-    /*
-    public void hit(){
-        canSplit = false;
-        canDoubleDown = false;
-        Card currentCard = myDeck.Deal();
-        hands.get(1).add(currentCard);
-        player1.hit(currentCard);
-        roundCheck();
-    }
-    public void hitSplit(){
-        Card currentCard = myDeck.Deal();
-        hands.get(2).add(currentCard);
-        player1.hitSplit(currentCard);
-        roundCheck();
-    }
-     */
 
     public void Deal() {
         hit(player);
@@ -169,8 +146,7 @@ public class Game {
     public void doubleDown() {
 
     }
-<<<<<<< HEAD
-=======
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    NOTE: The following function is for testing only. Somebody comment this out or delete it when we don't need it anymore.
     public void dealTwo() {
@@ -182,6 +158,5 @@ public class Game {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //End of Money things
->>>>>>> 425381f2078d0980297063371c3c9b1759cffbd2
 }
     //End of Money things

@@ -32,6 +32,8 @@ public class Routes implements ApplicationRoutes {
 
         router.GET().route("/Game").with(ApplicationController.class, "gameGet");
         router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
+        router.POST().route("/hit").with(ApplicationController.class, "hitPost");
+
 
 
         ///////////////////////////////////////////////////////////////////////
@@ -47,11 +49,3 @@ public class Routes implements ApplicationRoutes {
     }
 
 }
-
-/*
-        router.GET().route("/AcesUp").with(ApplicationController.class, "acesUp");
-        router.GET().route("/usGame").with(ApplicationController.class, "gameGetUS");
-        router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
-        router.POST().route("/moveCard/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveCard");
-        router.POST().route("/removeCard/{column}").with(ApplicationController.class, "removeCard");
- */

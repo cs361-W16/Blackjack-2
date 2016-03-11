@@ -32,15 +32,6 @@ public class ApplicationController {
         return Results.html();
 
     }
-    
-    public Result helloWorldJson() {
-        
-        SimplePojo simplePojo = new SimplePojo();
-        simplePojo.content = "Hello World! Hello Json!";
-
-        return Results.json().render(simplePojo);
-
-    }
 
     public Result gameGet() {
         Game g = new Game();

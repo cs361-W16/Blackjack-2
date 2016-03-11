@@ -1,10 +1,9 @@
 package models;
 
-<<<<<<< HEAD
 import org.apache.commons.lang.ArrayUtils;
-=======
+
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
->>>>>>> edit backend
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,12 +11,7 @@ import java.util.Random;
 /**
  * Created by jonathan, cameron on 3/6/2016.
  */
-<<<<<<< HEAD
-public class Person {
-    public java.util.List<Card> Hand = new ArrayList<>();
-    public int wallet = 0;
-=======
->>>>>>> edit backend
+
 
 // Following AcesUp EN & SP format
 // Taylor change UML diagram here
@@ -56,35 +50,28 @@ public abstract class Person {
         return -1;
     }
 
-<<<<<<< HEAD
-    // Count total cards in hand
-    public int countCards() {
-        int count = 0;
-        int numAces = 0;
-
-=======
-    // Count sum of all cards (value) in hand
     public int countCards(java.util.List<Card> Hand) {
         int count = 0;
         int numAces = 0;
->>>>>>> edit backend
-        for(int i = 0; i < Hand.size(); ++i){
+
+        for (int i = 0; i < Hand.size(); ++i) {
             int val = setCardValue(Hand.get(i));
-            if(val == 11)
+            if (val == 11)
                 numAces++;
             count += val;
         }
         // Condition where ACE exist and sum of all cards greater than 21
         // Automatically reduces ACE from 11 to 1 value
-        while(count > 21 && numAces > 0){
+        while (count > 21 && numAces > 0) {
             count -= 10;
             numAces--;
         }
         return count;
 
     }
+}
 
-    public void addHand(Card card){
+/*    public void addHand(Card card){
         Hand.add(card);
     }
 
@@ -102,5 +89,4 @@ public abstract class Person {
 
     public void loseMoney(int money){
         wallet -= money;
-    }
-}
+    }*/

@@ -44,6 +44,7 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
 
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     
@@ -62,5 +63,8 @@ public void testGetHelloWorldJson() {
 
 }*/
 >>>>>>> edit backend
+=======
+
+>>>>>>> 425381f2078d0980297063371c3c9b1759cffbd2
 
 }

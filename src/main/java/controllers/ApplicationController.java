@@ -31,13 +31,11 @@ public class ApplicationController {
     public Result index() {
         return Results.html();
     }
-<<<<<<< HEAD
-=======
 
     public Result blackjack() {
         return Results.html().template("views/Blackjack/Blackjack.flt.html");
     }
->>>>>>> edit backend
+
 
     public Result gameGet() {
         Game g = new Game();
@@ -67,7 +65,7 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result stay (Context context, Game g) {
+    public Result stay(Context context, Game g) {
 
         while(g.dealer.allowHit()) {
             g.deal(g.dealer);

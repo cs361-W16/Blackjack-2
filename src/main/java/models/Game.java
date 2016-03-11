@@ -18,16 +18,25 @@ public class Game {
     Person dealer = new Person();
 
     public java.util.List<Card> deck = new ArrayList<>();
+    /////////////////////////////////////////////////
+    // This here line is just for testing, remove it when we don't need to test the front end anymore.
+    public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
+    /////////////////////////////////////////////////
 
 
+    //public java.util.List<Card>>cols= new ArrayList<>();
 
     public Game(){
+        //////////////////////////////////////////////////
+        // Also for testing. Remove them when the time comes.
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+        ///////////////////////////////////////////////////
+
+
     }
-
-
     //Deck Functions
     public void buildDeck() {
-
         // For normal version, we have: 2, 3, 4, 5, 6, 7, 8, 9, J, Q, K, A
         // Total: 52
             // i < 15 means until 14 (each suit 14 cards)
@@ -137,6 +146,15 @@ public class Game {
     public void doubleDown(){
 
     }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    NOTE: The following function is for testing only. Somebody comment this out or delete it when we don't need it anymore.
+    public void dealTwo() {
+        for(int i = 0; i < 2; i++){
+            cols.get(i).add(deck.get(deck.size()-1));
+            deck.remove(deck.size()-1);
+        }
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //End of Money things
 }

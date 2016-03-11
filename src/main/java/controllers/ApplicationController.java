@@ -35,7 +35,7 @@ public class ApplicationController {
 
     public Result gameGet() {
         Game g = new Game();
-        g.buildDeck('x');
+        g.buildDeck();
         g.shuffle();
         g.dealTwo();
         g.error=false;

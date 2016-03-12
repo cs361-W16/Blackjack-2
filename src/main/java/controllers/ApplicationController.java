@@ -22,24 +22,25 @@ import ninja.Results;
 import models.Game;
 
 import com.google.inject.Singleton;
+import ninja.params.PathParam;
 
 
 @Singleton
 public class ApplicationController {
 
     public Result index() {
-
         return Results.html();
-
     }
+
+    public Result blackjack() {
+        return Results.html().template("views/Blackjack/Blackjack.flt.html");
+    }
+
 
     public Result gameGet() {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
-        g.dealTwo();
-        g.error=false;
-
         return Results.json().render(g);
     }
 
@@ -51,15 +52,33 @@ public class ApplicationController {
     }
 
     public Result dealPost(Context context, Game g) {
-        if(context.getRequestPath().contains("deal")){
-            g.dealTwo();
+        g.newRound();
+        g.deal(g.player);
+        g.deal(g.dealer);
+        g.deal(g.player);
+        g.deal(g.dealer);
+        return Results.json().render(g);
+    }
+
+    public Result hit(Context context, Game g) {
+        if (g.player.sumOfCard < 22) {
+            g.deal(g.player);
         }
         return Results.json().render(g);
     }
 
-    public static class SimplePojo {
+    public Result doubleDown(Context context, Game g) {
+        g.doubleDown();
+        return Results.json().render(g);
+    }
 
-        public String content;
-        
+    public Result stay(Context context, Game g) {
+
+        while(g.dealer.allowHit()) {
+            g.deal(g.dealer);
+        }
+        // Dealer done hit new card, now check who wins
+        g.endRound();
+        return Results.json().render(g);
     }
 }

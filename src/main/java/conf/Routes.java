@@ -29,9 +29,15 @@ public class Routes implements ApplicationRoutes {
 
         //GET routes
         router.GET().route("/").with(ApplicationController.class, "index");
+        router.GET().route("/Blackjack").with(ApplicationController.class, "blackjack");
+
+        router.GET().route("/").with(ApplicationController.class, "index");
 
         router.GET().route("/Game").with(ApplicationController.class, "gameGet");
         router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
+        router.POST().route("/hit").with(ApplicationController.class, "hit");
+        router.POST().route("/doubleDown").with(ApplicationController.class, "doubleDown");
+        router.POST().route("/stay").with(ApplicationController.class, "stay");
 
 
         ///////////////////////////////////////////////////////////////////////

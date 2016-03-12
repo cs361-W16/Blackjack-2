@@ -5,10 +5,7 @@
     </head>
     <body>
       <div id="game-container">
-        <div id="cover">
-          <button id="play-game-button" onclick="fixPastInitial()">Play<br>Game</button>
-        </div>
-        <div id="dealer-container">
+        <div id="dealer-container"> <span class="label">Dealer Hand</span>
           <div id="colOne" class="dropArea" style="float:left;"></div>
         </div>
         <div id="text-container">
@@ -19,18 +16,17 @@
           <button>Stay</button><br>
           <button>Split</button><br>
           <button>Double Down</button>
+          <FORM>
+              <INPUT TYPE="button" onClick="history.go(0)" VALUE="Deal">
+          </FORM>
         </div>
-        <div id="player-container">
+        <div id="player-container"> <span class="label">Player Hand</span>
           <div id="colTwo" class="dropArea" style="float:left;">
         </div>
       </div>
     </body>
 
     <script>
-    function fixPastInitial(){
-      $('#cover').addClass('hide');
-    }
-
     function display(game) {
       console.log(game);
       $( '.dropArea' ).html("");

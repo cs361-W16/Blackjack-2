@@ -1,144 +1,117 @@
-<div id="title">Blackjack</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Black Jack</title>
+</head>
+<body>
 
-<link href="/assets/css/AcesUp.css" rel="stylesheet">
+<link href="/assets/css/custom.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
-
-<script type="text/javascript" src="/assets/javascript/dragula.js"></script>
-<link rel="stylesheet" type="text/css" href="/assets/css/dragula.css">
-<link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
-<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-
-<div id="main-table">
-
-    <div id="colOne" class="dropArea" style="float:left;"></div>
-
-    <div id="colTwo" class="dropArea" style="float:left;"></div>
-
-    <div id="colThree" class="dropArea" style="float:left;"></div>
-
-    <div id="colFour" class="dropArea" style="float:left;"></div>
-
-    <div id="dealButton"><button>Deal</button></div>
-
-</div>
-
-<!--<button id="target" align="center">click me</button>-->
-
-<!--
-<table align="center">
-    <tr class="title">
-        <td>Column 1</td>
-        <td >Column 2</td>
-        <td >Column 3</td>
-        <td >Column 4</td>
+<header></header>
+<div id="chest">Booty<br><br><div id="booty"></div><br><br><div id="winner"></div></div>
+<table class="board">
+    <tr>
+        <td colspan="2">Dealer's Hand</td>
     </tr>
     <tr>
-        <td class="columnOfCards" id="c0" value="0"></td>
-        <td class="columnOfCards" id="c1" value="1"></td>
-        <td class="columnOfCards" id="c2" value="2"></td>
-        <td class="columnOfCards" id="c3" value="3"></td>
+        <td rowspan="2" id="filler"></td>
+        <td id="dealer" class="hand"></td>
     </tr>
+    <tr>
+        <td id="user" class="hand"></td>
+    </tr>
+    <tr><td colspan="2">Your Hand</td></tr>
 </table>
 
-
-<div id="everything"><BR><button id="Remove1" >Column 0 Remove</button><button id="Remove2" >Column 1 Remove</button><button id="Remove3" >Column 2 Remove</button><button id="Remove4" >Column 3 Remove</button>
-    <div id="moveText"><BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button></div></div>
-
--->
-
-<!--
-    make the draggable move
--->
+<footer id="menu"><table><tr>
+    <td><button id="howTo">How to Play</button></td>
+    <td><button id="split">Split</button></td>
+    <td><button id="hit">HIT!</button></td>
+    <td><button id="stay">STAY!</button></td>
+    <td><button id="doubledown">Double Down</button></td>
+    <td><button id="dealButton">Deal New Hand</button></td>
+</tr></table>
+</footer>
 
 <script>
-    var game;
-
-    function spanish(){
-      window.open("AcesUpSP","_parent");
+var game;
+function display(game) {
+    console.log(game);
+    $( '.hand' ).html("");
+    $.each(game.dealer.hand, function( key, val ) {
+        if(key==1 && !game.winner){
+        $( '#dealer' ).append("<img src='assets/images/Back.png' alt=nothing class=cardLocation>");
+        }
+        else{
+            $( '#dealer' ).append("<img src='assets/images/English/"+val.suit+val.value+".png' alt=nothing class=cardLocation>");
+        }
+    });
+    $.each(game.user.hand, function( key, val ) {
+        $( '#user' ).append("<img src='assets/images/English/"+val.suit+val.value+".png' alt=nothing class=cardLocation>");
+    });
+    $('#booty').html("$"+game.user.dough);
+    if(game.winner){
+        $('#winner').html("Winner:<br>"+game.winner+"!");
     }
-
-    function display(game) {
-        console.log(game);
-        $( '.dropArea' ).html("");
-
-        $.each(game.cols[0], function( key, val ) {
-
-            $( '#colOne' ).append("<img src='assets/images/English/"+val.suit+val.value+".png' alt=nothing class=cardLocation>");
-        });
-        $.each(game.cols[1], function( key, val ) {
-
-            $( '#colTwo' ).append("<img src='assets/images/English/"+val.suit+val.value+".png' alt=nothing class=cardLocation>");
-        });
-        $.each(game.cols[2], function( key, val ) {
-
-            $( '#colThree' ).append("<img src='assets/images/English/"+val.suit+val.value+".png' alt=nothing class=cardLocation>");
-        });
-        $.each(game.cols[3], function( key, val ) {
-
-            $( '#colFour' ).append("<img src='assets/images/English/"+val.suit+val.value+".png' alt=nothing class=cardLocation>");
-        });
+    else{
+        $('#winner').html("");
     }
-
-    $.getJSON("http://localhost:8080/usGame", function( data ) {
+}
+$.getJSON("http://localhost:8080/game", function( data ) {
     display(data);
     game = data;
-    });
-
-    $( "#target" ).click(function() {
-      alert( "Nope." );
-    });
-
-    $("#dealButton").click(function(){
-        $.ajax({
-          type: "POST",
-          url: "/dealGame",
-          data: JSON.stringify(game),
-          success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-                game = data;
-                display(data);},
-          contentType:"application/json; charset=utf-8",
-          dataType:"json",
-        });
-    });
-
-    function removeCard(trash){
-        $.ajax({
+});
+$("#dealButton").click(function(){
+    $.ajax({
         type: "POST",
-        url: "/removeCard/"+colNumber,
+        url: "/dealGame",
         data: JSON.stringify(game),
         success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-        game = data;
-        display(data);},
-        contentType:"application/json; charset=utf-8",
-        dataType:"json",
-        });
-
-    }
-
-    $("#moveButton").click(function(){
-    var colFrom = $("#from_col").val();
-    var colTo = $("#to_col").val();
-    $.ajax({
-      type: "POST",
-      url: "/moveCard/"+colFrom+"/"+colTo,
-      data: JSON.stringify(game),
-      success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
             game = data;
             display(data);},
-      contentType:"application/json; charset=utf-8",
-      dataType:"json",
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
     });
+});
+$("#hit").click(function(){
+    $.ajax({
+        type: "POST",
+        url: "/hit",
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
     });
-
-    dragula(
-        [document.querySelector('#colOne'),
-        document.querySelector('#colTwo'),
-        document.querySelector('#colThree'),
-        document.querySelector('#colFour')], {
-            removeOnSpill: true
-        }
-    );
+});
+$("#stay").click(function(){
+    $.ajax({
+        type: "POST",
+        url: "/stay",
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+});
+$("#doubledown").click(function(){
+    $.ajax({
+        type: "POST",
+        url: "/doubleDown",
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+});
 </script>
+
 </body>
 </html>

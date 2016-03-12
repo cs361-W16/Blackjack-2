@@ -31,16 +31,16 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     String URL_INDEX = "/";
     String URL_HELLO_WORLD_JSON = "/hello_world.json";
     
-    @Test
-    public void testGetIndex() {
-    
-        Response response = makeRequest(
-                Request.GET().url(
-                        testServerUrl().path(URL_INDEX)));
-
-        assertThat(response.payload, containsString("Hit"));
-        assertThat(response.payload, containsString("Stay"));
-
-
-    }
+//    @Test
+//    public void testGetIndex() {
+//
+//        Response response = makeRequest(
+//                Request.GET().url(
+//                        testServerUrl().path(URL_INDEX)));
+//
+//        assertThat(response.payload, containsString("Hit"));
+//        assertThat(response.payload, containsString("Stay"));
+//
+//
+//    }
 }

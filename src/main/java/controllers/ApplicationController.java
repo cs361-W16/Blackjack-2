@@ -24,7 +24,6 @@ import models.Game;
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
 
-
 @Singleton
 public class ApplicationController {
 
@@ -33,7 +32,7 @@ public class ApplicationController {
     }
 
     public Result blackjack() {
-        return Results.html().template("views/Blackjack/Blackjack.flt.html");
+        return Results.html().template("views/Blackjack/Blackjack.ftl.html");
     }
 
 
@@ -41,16 +40,10 @@ public class ApplicationController {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.dealTwo();
+        g.dealTwo();
         return Results.json().render(g);
     }
-
-//    public Result hitPost(Context context, Game g){
-//        if(context.getRequestPath().contains("hit")){
-//            g.hit();
-//        }
-//        return Results.json().render(g);
-//    }
-
     public Result dealPost(Context context, Game g) {
         g.newRound();
         g.deal(g.player);
@@ -66,14 +59,12 @@ public class ApplicationController {
         }
         return Results.json().render(g);
     }
-
     public Result doubleDown(Context context, Game g) {
         g.doubleDown();
         return Results.json().render(g);
     }
 
     public Result stay(Context context, Game g) {
-
         while(g.dealer.allowHit()) {
             g.deal(g.dealer);
         }

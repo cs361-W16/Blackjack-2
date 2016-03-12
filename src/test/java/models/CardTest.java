@@ -4,10 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by jonathan 3/6/2016.
- */
-
 public class CardTest {
 
         @Test

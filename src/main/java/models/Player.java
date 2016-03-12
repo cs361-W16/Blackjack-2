@@ -1,8 +1,4 @@
 package models;
-
-/**
- * Created by cameron, jonathan on 3/6/2016.
- */
 public class Player extends Person {
 
     public Player() {

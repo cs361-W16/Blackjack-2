@@ -1,8 +1,5 @@
 package models;
 
-/**
- * Created by jonathan, cameron on 3/6/2016.
- */
 public class Dealer extends Player {
     public Dealer() {
 

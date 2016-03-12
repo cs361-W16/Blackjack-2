@@ -8,16 +8,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-/**
- * Created by jonathan, cameron on 3/6/2016.
- */
-
 
 // Following AcesUp EN & SP format
-// Taylor change UML diagram here
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
-
 public abstract class Person {
 
     public int money;
@@ -35,7 +29,6 @@ public abstract class Person {
     // Reassign the value of each card to be suitable in Blackjack game
     public int setCardValue (Card C) {
         int cardVal = C.getValue();
-
         // if not-picture or not-aces card (2 - 10)
         if(cardVal >= 2 && cardVal <= 10)
             return cardVal;
@@ -45,7 +38,6 @@ public abstract class Person {
             // if an aces card (A)
         else if(cardVal == 14)
             return 11;
-
         // if value of card less than 2 or more than 14
         return -1;
     }
@@ -70,23 +62,3 @@ public abstract class Person {
 
     }
 }
-
-/*    public void addHand(Card card){
-        Hand.add(card);
-    }
-
-    public void clearHand(){
-            Hand.clear();
-    }
-
-    public int getMoney(){
-        return wallet;
-    }
-
-    public void addMoney(int money){
-        wallet += money;
-    }
-
-    public void loseMoney(int money){
-        wallet -= money;
-    }*/

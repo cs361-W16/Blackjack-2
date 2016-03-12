@@ -4,10 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by jonathan 3/6/2016.
- */
-
 public class PersonTest {
     @Test
     public void testPlayerMoney() {
@@ -28,7 +24,7 @@ public class PersonTest {
     @Test
     public void testSetCardValue() {
         Game g = new Game();
-        Card c = new Card(12, Suit.Diamonds);
+        Card c = new Card(13, Suit.Diamonds);
         assertEquals(10, g.player.setCardValue(c));
 
     }

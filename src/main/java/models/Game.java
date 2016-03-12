@@ -20,12 +20,14 @@ public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
+
     public int ante;
     public int currentWinner; // 1 means USER, 2 means DEALER, 3 means TIE
 
     ////////////// TESTING ///////////////////
     //This here line is just for testing, remove it when we don't need to test the front end anymore.
     //public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
+
 
     //public java.util.List<Card>>cols= new ArrayList<>();
 
@@ -60,8 +62,10 @@ public class Game {
         }
     }
 
+
     public void deal(Person player) {
         player.Hand.add(deck.get(deck.size() - 1));
+
 
         player.sumOfCard = player.sumOfCard + player.countCards(player.Hand);
 
@@ -121,36 +125,37 @@ public class Game {
 /*    // Remove the top card from cardList
 >>>>>>> edit backend
     public Card pop(java.util.List<Card> cardList) {
-        return cardList.remove(cardList.size()-1);
+        return cardList.remove(cardList.size() - 1);
     }
 
     // Put one card into hand
-<<<<<<< HEAD
     public void hit(Person person1) {
         person1.addHand(pop(deck));
     }
 
-    public void Deal(){
+
+    public void Deal() {
         hit(player);
         hit(player);
         hit(dealer);
         hit(dealer);
     }
 
-    public void clearHands(){
+    public void clearHands() {
         player.clearHand();
         dealer.clearHand();
     }
     //End of Player Hand Functions
 
     //Turns
-    public void Hold(){
-       dealerAction();
+    public void Hold() {
+        dealerAction();
 
         //SET ALL BUTTONS TO FALSE IF IMPLIMENTING HERE
     }
+
     //Sets player and dealer hands and creates a new deck
-    public void newRound(){
+    public void newRound() {
         clearHands();
         clearDeck();
         buildDeck();
@@ -158,26 +163,26 @@ public class Game {
         Deal();
     }
 
-    public int endRound(){
+    public int endRound() {
         if (player.countCards() > 21) {
             System.out.println("Player Busted");
             return 0;
-        }else if(player.countCards() > dealer.countCards()){
+        } else if (player.countCards() > dealer.countCards()) {
             System.out.println("Player Wins");
             return 1;
-        }else if (player.countCards() == dealer.countCards()){
+        } else if (player.countCards() == dealer.countCards()) {
             System.out.println("Tie Game");
             return 2;
-        }else{
+        } else {
             System.out.println("Dealer Wins");
             return 3;
         }
     }
 
-    public int dealerAction(){
-        while(dealer.countCards() < 17){
+    public int dealerAction() {
+        while (dealer.countCards() < 17) {
             hit(dealer);
-            if(dealer.countCards() > 21){
+            if (dealer.countCards() > 21) {
                 System.out.println("Dealer Busted");
                 return 1;
             }
@@ -188,28 +193,27 @@ public class Game {
     //End of Turns
 
     //Money things
-    public void beginingBalance(){
+    public void beginingBalance() {
         player.addMoney(100);
     }
 
-    public void Bet(){
+    public void Bet() {
         player.loseMoney(2);
-        pot +=2;
+        pot += 2;
     }
 
-    public void winBet(){
+    public void winBet() {
         player.addMoney(pot);
         pot = 0;
     }
 
-    public void doubleDown(){
+    public void doubleDown() {
 
     }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    NOTE: The following function is for testing only. Somebody comment this out or delete it when we don't need it anymore.
     public void dealTwo() {
-<<<<<<< HEAD
-=======
     public void hit(java.util.List<Card> cardList) {
         cardList.add(pop(deck));
     }*/

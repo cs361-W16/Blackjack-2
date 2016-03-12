@@ -1,8 +1,8 @@
 package models;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 public class GameTest {
     @Test
@@ -17,7 +17,6 @@ public class GameTest {
         g.buildDeck();
         assertEquals(52,g.deck.size());
     }
-
     @Test
     public void testGameDeal() {
         Game g = new Game();
@@ -58,3 +57,4 @@ public class GameTest {
         assertEquals(96,g.player.money);
     }
 }
+

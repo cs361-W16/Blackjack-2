@@ -24,8 +24,6 @@ import models.Game;
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
 
-
-
 @Singleton
 public class ApplicationController {
 
@@ -44,39 +42,29 @@ public class ApplicationController {
         g.shuffle();
         g.dealTwo();
         g.dealTwo();
-
         return Results.json().render(g);
     }
-
     public Result dealPost(Context context, Game g) {
-        if(g.gameInit()==false) {
-            g.newRound();
-            g.deal(g.player);
-            g.deal(g.dealer);
-            g.deal(g.player);
-            g.deal(g.dealer);
-        }
+        g.newRound();
+        g.deal(g.player);
+        g.deal(g.dealer);
+        g.deal(g.player);
+        g.deal(g.dealer);
         return Results.json().render(g);
     }
-
-
 
     public Result hit(Context context, Game g) {
-        if (g.gameInit() && g.player.sumOfCard < 22) {
+        if (g.player.sumOfCard < 22) {
             g.deal(g.player);
         }
         return Results.json().render(g);
     }
-
     public Result doubleDown(Context context, Game g) {
-        if (g.gameInit()) {
-            g.doubleDown();
-        }
+        g.doubleDown();
         return Results.json().render(g);
     }
 
     public Result stay(Context context, Game g) {
-
         while(g.dealer.allowHit()) {
             g.deal(g.dealer);
         }

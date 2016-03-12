@@ -10,10 +10,8 @@ import java.util.Collections;
 import java.util.Random;
 
 // Following AcesUp EN & SP format
-// Taylor change UML diagram here
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
-
 public abstract class Person {
 
     public int money;

@@ -15,7 +15,6 @@ public class Game {
     public Person dealer = new Dealer();
 
     public java.util.List<Card> deck = new ArrayList<>();
-
     public int ante;
     public int currentWinner; // 1 means USER, 2 means DEALER, 3 means TIE
     private boolean gameOn;
@@ -54,7 +53,6 @@ public class Game {
 
         gameOn = true;
     }
-
     public void buildDeck() {
         // For normal version, we have: 2, 3, 4, 5, 6, 7, 8, 9, J, Q, K, A
         // Total: 52
@@ -66,9 +64,14 @@ public class Game {
             deck.add(new Card(i, Suit.Spades));
         }
     }
+    public void shuffle() {
+        long seed = System.nanoTime();
+        Collections.shuffle(deck, new Random(seed));
+    }
 
     public void deal(Person player) {
         player.Hand.add(deck.get(deck.size() - 1));
+
 
         player.sumOfCard = player.countCards(player.Hand);
 
@@ -89,14 +92,8 @@ public class Game {
         deck.remove(deck.size() - 1);
     }
 
-    public void shuffle() {
-        long seed = System.nanoTime();
-        Collections.shuffle(deck, new Random(seed));
-    }
-    //End of Deck Functions
 
     public void endRound() {
-        gameOn = false;
         if (player.sumOfCard > 21) {
             currentWinner = 2; // means dealer win
         }
@@ -107,21 +104,18 @@ public class Game {
         else if (player.sumOfCard > dealer.sumOfCard) {
             currentWinner = 1; // means player win
             player.money = player.money + (2 * ante);
-        }
-        else if (player.sumOfCard < dealer.sumOfCard) {
+        } else if (player.sumOfCard < dealer.sumOfCard) {
             currentWinner = 2; // means dealer win
-        }
-        else {
+        } else {
             currentWinner = 3;
             player.money = player.money + ante;
         }
     }
 
-    public void doubleDown() {
-        if(ante < 4) {
-            player.money = player.money - ante;
-            ante = ante + 2;
+    public void doubleDown(){
+        if(ante<4) {
+            player.money -= ante;
+            ante += ante;
         }
     }
 }
-
